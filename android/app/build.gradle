@@ -85,6 +85,12 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    project.ext.vectoricons = [
+        iconFontNames: [ 'MaterialIcons.ttf', 'MaterialCommunityIcons.ttf', 'Ionicons.ttf', 'FontAwesome.ttf', 'FontAwesome5_Solid.ttf', 'FontAwesome5_Regular.ttf' ]
+    ]
+
+    apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
