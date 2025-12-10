@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Card from '../components/Card';
 import colors from '../constants/colors';
 import { getPurchases, getSales, getItems } from '../utils/storage';
@@ -110,8 +111,6 @@ const DashboardScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
-
       {/* Header */}
       <View style={styles.header}>
         <View>
@@ -264,7 +263,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: colors.primary,
     paddingHorizontal: 20,
-    paddingTop: 16,
+    paddingTop: StatusBar.currentHeight ? StatusBar.currentHeight + 16 : 40,
     paddingBottom: 24,
     flexDirection: 'row',
     justifyContent: 'space-between',

@@ -7,8 +7,6 @@ import Card from '../components/Card';
 const TransactionsHomeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
-      
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerContent}>
@@ -65,7 +63,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: colors.primary,
     paddingHorizontal: 20,
-    paddingTop: 16,
+    paddingTop: StatusBar.currentHeight ? StatusBar.currentHeight + 16 : 40,
     paddingBottom: 24,
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
