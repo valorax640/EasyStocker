@@ -36,6 +36,7 @@ const BottomTabNavigator = () => {
         tabBarStyle: {
           height: 80,
           paddingTop: 8,
+          paddingBottom: 12,
           borderTopWidth: 1,
           borderTopColor: colors.border,
           backgroundColor: colors.white,
@@ -46,8 +47,13 @@ const BottomTabNavigator = () => {
           shadowRadius: 8,
         },
         tabBarLabelStyle: {
-          fontSize: 12,
+          fontSize: 11,
           fontWeight: '600',
+          marginTop: -4,
+          marginBottom: 2,
+        },
+        tabBarIconStyle: {
+          marginTop: 4,
         },
         tabBarKeyboardHidesTabBar: true,
       }}>

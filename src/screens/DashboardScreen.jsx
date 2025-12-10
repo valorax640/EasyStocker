@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: colors.primary,
     paddingHorizontal: 20,
-    paddingTop: StatusBar.currentHeight ? StatusBar.currentHeight + 16 : 40,
+    paddingTop: StatusBar.currentHeight ? StatusBar.currentHeight : 40,
     paddingBottom: 24,
     flexDirection: 'row',
     justifyContent: 'space-between',
