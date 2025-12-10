@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -8,12 +8,12 @@ import {
   RefreshControl,
   StatusBar,
 } from 'react-native';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Card from '../components/Card';
 import colors from '../constants/colors';
-import {getPurchases, getSales, getItems} from '../utils/storage';
-import {formatCurrency, getTodayDate, getMonthStartDate} from '../utils/helpers';
+import { getPurchases, getSales, getItems } from '../utils/storage';
+import { formatCurrency, getTodayDate, getMonthStartDate } from '../utils/helpers';
 
 const DashboardScreen = () => {
   const navigation = useNavigation();
@@ -83,35 +83,35 @@ const DashboardScreen = () => {
       icon: 'package-variant',
       color: colors.primary,
       gradient: [colors.primary, colors.primaryDark],
-      onPress: () => navigation.navigate('InventoryTab', {screen: 'ItemList'}),
+      onPress: () => navigation.navigate('InventoryTab', { screen: 'ItemList' }),
     },
     {
       title: 'New Sale',
       icon: 'cash-plus',
       color: colors.success,
       gradient: [colors.success, '#059669'],
-      onPress: () => navigation.navigate('TransactionsTab', {screen: 'SalesForm'}),
+      onPress: () => navigation.navigate('TransactionsTab', { screen: 'SalesForm' }),
     },
     {
       title: 'Purchase',
       icon: 'cart-plus',
       color: colors.info,
       gradient: [colors.info, '#2563EB'],
-      onPress: () => navigation.navigate('TransactionsTab', {screen: 'PurchaseForm'}),
+      onPress: () => navigation.navigate('TransactionsTab', { screen: 'PurchaseForm' }),
     },
     {
       title: 'Stock',
       icon: 'chart-box',
       color: colors.secondary,
       gradient: [colors.secondary, '#7C3AED'],
-      onPress: () => navigation.navigate('InventoryTab', {screen: 'StockList'}),
+      onPress: () => navigation.navigate('InventoryTab', { screen: 'StockList' }),
     },
   ];
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
-      
+
       {/* Header */}
       <View style={styles.header}>
         <View>
@@ -120,7 +120,7 @@ const DashboardScreen = () => {
         </View>
         <TouchableOpacity
           style={styles.notificationButton}
-          onPress={() => navigation.navigate('InventoryTab', {screen: 'StockList'})}>
+        >
           <Icon name="bell-outline" size={24} color={colors.white} />
           {lowStockCount > 0 && (
             <View style={styles.badge}>
@@ -142,21 +142,21 @@ const DashboardScreen = () => {
         {/* Stats Cards */}
         <View style={styles.statsSection}>
           <Card style={styles.statCard}>
-            <View style={[styles.iconContainer, {backgroundColor: colors.success + '20'}]}>
+            <View style={[styles.iconContainer, { backgroundColor: colors.success + '20' }]}>
               <Icon name="currency-usd" size={24} color={colors.success} />
             </View>
             <Text style={styles.statLabel}>Today's Sales</Text>
-            <Text style={[styles.statValue, {color: colors.success}]}>
+            <Text style={[styles.statValue, { color: colors.success }]}>
               {formatCurrency(todaySales, currency)}
             </Text>
           </Card>
 
           <Card style={styles.statCard}>
-            <View style={[styles.iconContainer, {backgroundColor: colors.danger + '20'}]}>
+            <View style={[styles.iconContainer, { backgroundColor: colors.danger + '20' }]}>
               <Icon name="cart" size={24} color={colors.danger} />
             </View>
             <Text style={styles.statLabel}>Today's Purchases</Text>
-            <Text style={[styles.statValue, {color: colors.danger}]}>
+            <Text style={[styles.statValue, { color: colors.danger }]}>
               {formatCurrency(todayPurchases, currency)}
             </Text>
           </Card>
@@ -164,21 +164,21 @@ const DashboardScreen = () => {
 
         <View style={styles.statsSection}>
           <Card style={styles.statCard}>
-            <View style={[styles.iconContainer, {backgroundColor: colors.primary + '20'}]}>
+            <View style={[styles.iconContainer, { backgroundColor: colors.primary + '20' }]}>
               <Icon name="chart-line" size={24} color={colors.primary} />
             </View>
             <Text style={styles.statLabel}>Month's Sales</Text>
-            <Text style={[styles.statValue, {color: colors.primary}]}>
+            <Text style={[styles.statValue, { color: colors.primary }]}>
               {formatCurrency(monthSales, currency)}
             </Text>
           </Card>
 
           <Card style={styles.statCard}>
-            <View style={[styles.iconContainer, {backgroundColor: colors.danger + '20'}]}>
+            <View style={[styles.iconContainer, { backgroundColor: colors.danger + '20' }]}>
               <Icon name="cart" size={24} color={colors.danger} />
             </View>
             <Text style={styles.statLabel}>Month's Purchases</Text>
-            <Text style={[styles.statValue, {color: colors.danger}]}>
+            <Text style={[styles.statValue, { color: colors.danger }]}>
               {formatCurrency(monthPurchases, currency)}
             </Text>
           </Card>
@@ -187,7 +187,7 @@ const DashboardScreen = () => {
         {/* Low Stock Alert */}
         {lowStockCount > 0 && (
           <TouchableOpacity
-            onPress={() => navigation.navigate('InventoryTab', {screen: 'StockList'})}>
+            onPress={() => navigation.navigate('InventoryTab', { screen: 'StockList' })}>
             <Card style={styles.alertCard}>
               <View style={styles.alertContent}>
                 <Icon name="alert-circle" size={24} color={colors.white} />
@@ -207,7 +207,7 @@ const DashboardScreen = () => {
             {quickActions.map((action, index) => (
               <TouchableOpacity
                 key={index}
-                style={[styles.actionCard, {backgroundColor: action.color}]}
+                style={[styles.actionCard, { backgroundColor: action.color }]}
                 onPress={action.onPress}
                 activeOpacity={0.8}>
                 <Icon name={action.icon} size={32} color={colors.white} />
@@ -220,13 +220,13 @@ const DashboardScreen = () => {
         {/* More Options */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>More Options</Text>
-          
+
           <Card>
             <TouchableOpacity
               style={styles.listItem}
-              onPress={() => navigation.navigate('ContactsTab', {screen: 'SupplierList'})}>
+              onPress={() => navigation.navigate('ContactsTab', { screen: 'SupplierList' })}>
               <View style={styles.listItemLeft}>
-                <View style={[styles.listIcon, {backgroundColor: colors.info + '20'}]}>
+                <View style={[styles.listIcon, { backgroundColor: colors.info + '20' }]}>
                   <Icon name="store" size={20} color={colors.info} />
                 </View>
                 <Text style={styles.listItemText}>Suppliers</Text>
@@ -238,9 +238,9 @@ const DashboardScreen = () => {
 
             <TouchableOpacity
               style={styles.listItem}
-              onPress={() => navigation.navigate('ContactsTab', {screen: 'CustomerList'})}>
+              onPress={() => navigation.navigate('ContactsTab', { screen: 'CustomerList' })}>
               <View style={styles.listItemLeft}>
-                <View style={[styles.listIcon, {backgroundColor: colors.secondary + '20'}]}>
+                <View style={[styles.listIcon, { backgroundColor: colors.secondary + '20' }]}>
                   <Icon name="account-group" size={20} color={colors.secondary} />
                 </View>
                 <Text style={styles.listItemText}>Customers</Text>
@@ -272,7 +272,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
     shadowColor: colors.black,
-    shadowOffset: {width: 0, height: 4},
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.15,
     shadowRadius: 8,
     elevation: 8,
@@ -383,7 +383,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: colors.black,
-    shadowOffset: {width: 0, height: 4},
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.15,
     shadowRadius: 8,
     elevation: 4,
