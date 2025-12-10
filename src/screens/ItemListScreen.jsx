@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -7,13 +7,13 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import {useFocusEffect} from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import colors from '../constants/colors';
-import {getItems, saveItems} from '../utils/storage';
+import { getItems, saveItems } from '../utils/storage';
 
-const ItemListScreen = ({navigation}) => {
+const ItemListScreen = ({ navigation }) => {
   const [items, setItems] = useState([]);
 
   useFocusEffect(
@@ -32,7 +32,7 @@ const ItemListScreen = ({navigation}) => {
       'Delete Item',
       'Are you sure you want to delete this item?',
       [
-        {text: 'Cancel', style: 'cancel'},
+        { text: 'Cancel', style: 'cancel' },
         {
           text: 'Delete',
           style: 'destructive',
@@ -46,11 +46,11 @@ const ItemListScreen = ({navigation}) => {
     );
   };
 
-  const renderItem = ({item}) => (
+  const renderItem = ({ item }) => (
     <Card>
       <View style={styles.itemHeader}>
         <Text style={styles.itemName}>{item.name}</Text>
-        <Text style={styles. itemCode}>#{item.code}</Text>
+        <Text style={styles.itemCode}>#{item.code}</Text>
       </View>
       <Text style={styles.itemDescription}>{item.description}</Text>
       <View style={styles.itemFooter}>
@@ -60,12 +60,12 @@ const ItemListScreen = ({navigation}) => {
       <View style={styles.actions}>
         <TouchableOpacity
           style={styles.editButton}
-          onPress={() => navigation.navigate('ItemForm', {item})}>
+          onPress={() => navigation.navigate('ItemForm', { item })}>
           <Text style={styles.editText}>Edit</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.deleteButton}
-          onPress={() => handleDelete(item. id)}>
+          onPress={() => handleDelete(item.id)}>
           <Text style={styles.deleteText}>Delete</Text>
         </TouchableOpacity>
       </View>
@@ -80,7 +80,7 @@ const ItemListScreen = ({navigation}) => {
         keyExtractor={item => item.id}
         contentContainerStyle={styles.list}
         ListEmptyComponent={
-          <Text style={styles. emptyText}>No items found.  Add your first item!</Text>
+          <Text style={styles.emptyText}>No items found.  Add your first item!</Text>
         }
       />
       <View style={styles.footer}>
@@ -117,11 +117,11 @@ const styles = StyleSheet.create({
   },
   itemDescription: {
     fontSize: 14,
-    color:  colors.textSecondary,
+    color: colors.textSecondary,
     marginBottom: 12,
   },
   itemFooter: {
-    flexDirection:  'row',
+    flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 12,
   },
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: colors.primary,
   },
-  actions:  {
+  actions: {
     flexDirection: 'row',
     gap: 12,
   },
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   deleteButton: {
     flex: 1,
     padding: 10,
-    backgroundColor:  colors.danger,
+    backgroundColor: colors.danger,
     borderRadius: 6,
     alignItems: 'center',
   },
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: colors.white,
     borderTopWidth: 1,
-    borderTopColor:  colors.border,
+    borderTopColor: colors.border,
   },
 });
 

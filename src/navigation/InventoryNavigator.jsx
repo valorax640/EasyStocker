@@ -1,5 +1,5 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import colors from '../constants/colors';
 
 import InventoryHomeScreen from '../screens/InventoryHomeScreen';
@@ -27,22 +27,22 @@ const InventoryNavigator = () => {
       <Stack.Screen
         name="InventoryHome"
         component={InventoryHomeScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="ItemList"
         component={ItemListScreen}
-        options={{title: 'Items'}}
+        options={{ title: 'Items' }}
       />
       <Stack.Screen
         name="ItemForm"
         component={ItemFormScreen}
-        options={{title: 'Item Details'}}
+        options={{ title: 'Item Details' }}
       />
       <Stack.Screen
         name="StockList"
         component={StockListScreen}
-        options={{title: 'Stock Overview'}}
+        options={{ title: 'Stock Overview' }}
       />
     </Stack.Navigator>
   );

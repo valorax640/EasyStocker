@@ -1,5 +1,5 @@
 import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../constants/colors';
 
@@ -10,19 +10,19 @@ import ContactsNavigator from './ContactsNavigator';
 
 const Tab = createBottomTabNavigator();
 
-const DashboardTabIcon = ({color, size}) => (
+const DashboardTabIcon = ({ color, size }) => (
   <Icon name="view-dashboard" size={size} color={color} />
 );
 
-const InventoryTabIcon = ({color, size}) => (
+const InventoryTabIcon = ({ color, size }) => (
   <Icon name="package-variant" size={size} color={color} />
 );
 
-const TransactionsTabIcon = ({color, size}) => (
+const TransactionsTabIcon = ({ color, size }) => (
   <Icon name="swap-horizontal" size={size} color={color} />
 );
 
-const ContactsTabIcon = ({color, size}) => (
+const ContactsTabIcon = ({ color, size }) => (
   <Icon name="account-group" size={size} color={color} />
 );
 
@@ -42,7 +42,7 @@ const BottomTabNavigator = () => {
           backgroundColor: colors.white,
           elevation: 8,
           shadowColor: colors.black,
-          shadowOffset: {width: 0, height: -3},
+          shadowOffset: { width: 0, height: -3 },
           shadowOpacity: 0.1,
           shadowRadius: 8,
         },
