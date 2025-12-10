@@ -10,7 +10,7 @@ export const formatDate = (date) => {
   return `${day}/${month}/${year}`;
 };
 
-export const formatCurrency = (amount, currency = '$') => {
+export const formatCurrency = (amount, currency = '₹') => {
   return `${currency}${parseFloat(amount).toFixed(2)}`;
 };
 

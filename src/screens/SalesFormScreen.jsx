@@ -53,7 +53,7 @@ const SalesFormScreen = ({navigation}) => {
   const updateItem = (id, field, value) => {
     setSelectedItems(
       selectedItems.map(item =>
-        item.id === id ?  {...item, [field]: value} : item
+        item.id === id ? {...item, [field]: value} : item
       )
     );
   };
@@ -81,19 +81,32 @@ const SalesFormScreen = ({navigation}) => {
       return false;
     }
 
-    for (let item of selectedItems) {
-      if (!item.itemId || ! item.quantity || !item.price) {
-        Alert.alert('Error', 'Please fill all item details');
+    for (let i = 0; i < selectedItems.length; i++) {
+      const item = selectedItems[i];
+      
+      // Check if item is selected
+      if (!item.itemId || item.itemId === '' || item.itemId === undefined) {
+        Alert.alert('Error', `Please select an item for Item #${i + 1}`);
         return false;
       }
-      if (parseFloat(item.quantity) <= 0 || parseFloat(item.price) <= 0) {
-        Alert.alert('Error', 'Quantity and price must be greater than 0');
+      
+      // Validate quantity and price are valid numbers
+      const qty = parseFloat(item.quantity);
+      const price = parseFloat(item.price);
+      
+      if (!item.quantity || item.quantity === '' || isNaN(qty) || qty <= 0) {
+        Alert.alert('Error', `Please enter a valid quantity greater than 0 for Item #${i + 1}`);
+        return false;
+      }
+      
+      if (!item.price || item.price === '' || isNaN(price) || price <= 0) {
+        Alert.alert('Error', `Please enter a valid price greater than 0 for Item #${i + 1}`);
         return false;
       }
 
       // Check stock availability
       const itemDetails = getItemDetails(item.itemId);
-      if (itemDetails && parseFloat(item.quantity) > itemDetails.currentStock) {
+      if (itemDetails && qty > itemDetails.currentStock) {
         Alert.alert('Error', `Insufficient stock for ${itemDetails.name}. Available: ${itemDetails.currentStock}`);
         return false;
       }
@@ -126,8 +139,8 @@ const SalesFormScreen = ({navigation}) => {
         customerId: selectedCustomer,
         date: date,
         items: selectedItems.map(item => ({
-          itemId: item. itemId,
-          itemName:  getItemDetails(item.itemId)?.name || '',
+          itemId: item.itemId,
+          itemName: getItemDetails(item.itemId)?.name || '',
           quantity: parseFloat(item.quantity),
           price: parseFloat(item.price),
         })),
@@ -158,7 +171,7 @@ const SalesFormScreen = ({navigation}) => {
               style={styles.picker}>
               <Picker.Item label="-- Select Customer --" value="" />
               {customers.map(customer => (
-                <Picker. Item key={customer.id} label={customer.name} value={customer.id} />
+                <Picker.Item key={customer.id} label={customer.name} value={customer.id} />
               ))}
             </Picker>
           </View>
@@ -186,11 +199,21 @@ const SalesFormScreen = ({navigation}) => {
                   <Picker
                     selectedValue={item.itemId}
                     onValueChange={(value) => {
-                      updateItem(item.id, 'itemId', value);
                       const selected = getItemDetails(value);
-                      if (selected) {
-                        updateItem(item.id, 'price', selected.price. toString());
-                      }
+                      
+                      // Batch update both itemId and price together to avoid race condition
+                      setSelectedItems(
+                        selectedItems.map(si => {
+                          if (si.id === item.id) {
+                            return {
+                              ...si,
+                              itemId: value,
+                              price: selected ? selected.price.toString() : si.price
+                            };
+                          }
+                          return si;
+                        })
+                      );
                     }}
                     style={styles.picker}>
                     <Picker.Item label="-- Select Item --" value="" />
@@ -227,7 +250,7 @@ const SalesFormScreen = ({navigation}) => {
                 keyboardType="decimal-pad"
               />
 
-              {item.quantity && item. price && (
+              {item.quantity && item.price && (
                 <Text style={styles.subtotal}>
                   Subtotal: {formatCurrency(parseFloat(item.quantity) * parseFloat(item.price))}
                 </Text>

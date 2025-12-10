@@ -69,7 +69,7 @@ export const getSales = async () => {
 export const saveSettings = async (settings) => saveData(KEYS. SETTINGS, settings);
 export const getSettings = async () => {
   const settings = await getData(KEYS.SETTINGS);
-  return settings || {currency: '$', gstEnabled: false, pin: null};
+  return settings || {currency: '₹', gstEnabled: false, pin: null};
 };
 
 // Clear all data

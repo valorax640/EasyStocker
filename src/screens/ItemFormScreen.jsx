@@ -64,8 +64,8 @@ const ItemFormScreen = ({navigation, route}) => {
         code: formData.code.trim(),
         description: formData.description.trim(),
         price: parseFloat(formData.price),
-        minStock: parseInt(formData.minStock) || 0,
-        currentStock: editItem ? editItem.currentStock : parseInt(formData.currentStock) || 0,
+        minStock: parseInt(formData.minStock, 10) || 0,
+        currentStock: editItem ? editItem.currentStock : parseInt(formData.currentStock, 10) || 0,
         createdAt: editItem ? editItem.createdAt : new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       };

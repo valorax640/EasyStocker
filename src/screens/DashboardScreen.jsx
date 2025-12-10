@@ -24,7 +24,7 @@ const DashboardScreen = () => {
   const [lowStockCount, setLowStockCount] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [refreshing, setRefreshing] = useState(false);
-  const [currency, setCurrency] = useState('$');
+  const [currency, setCurrency] = useState('₹');
 
   useFocusEffect(
     React.useCallback(() => {
@@ -65,6 +65,7 @@ const DashboardScreen = () => {
       const lowStock = items.filter(item => item.currentStock <= (item.minStock || 0));
       setLowStockCount(lowStock.length);
       setTotalItems(items.length);
+
     } catch (error) {
       console.error('Error loading dashboard data:', error);
     }
@@ -173,12 +174,12 @@ const DashboardScreen = () => {
           </Card>
 
           <Card style={styles.statCard}>
-            <View style={[styles.iconContainer, {backgroundColor: colors.warning + '20'}]}>
-              <Icon name="package-variant" size={24} color={colors.warning} />
+            <View style={[styles.iconContainer, {backgroundColor: colors.danger + '20'}]}>
+              <Icon name="cart" size={24} color={colors.danger} />
             </View>
-            <Text style={styles.statLabel}>Total Items</Text>
-            <Text style={[styles.statValue, {color: colors.warning}]}>
-              {totalItems}
+            <Text style={styles.statLabel}>Month's Purchases</Text>
+            <Text style={[styles.statValue, {color: colors.danger}]}>
+              {formatCurrency(monthPurchases, currency)}
             </Text>
           </Card>
         </View>
@@ -243,20 +244,6 @@ const DashboardScreen = () => {
                   <Icon name="account-group" size={20} color={colors.secondary} />
                 </View>
                 <Text style={styles.listItemText}>Customers</Text>
-              </View>
-              <Icon name="chevron-right" size={24} color={colors.gray} />
-            </TouchableOpacity>
-
-            <View style={styles.divider} />
-
-            <TouchableOpacity
-              style={styles.listItem}
-              onPress={() => navigation.navigate('InventoryTab', {screen: 'StockAdjustment'})}>
-              <View style={styles.listItemLeft}>
-                <View style={[styles.listIcon, {backgroundColor: colors.warning + '20'}]}>
-                  <Icon name="tune" size={20} color={colors.warning} />
-                </View>
-                <Text style={styles.listItemText}>Stock Adjustment</Text>
               </View>
               <Icon name="chevron-right" size={24} color={colors.gray} />
             </TouchableOpacity>

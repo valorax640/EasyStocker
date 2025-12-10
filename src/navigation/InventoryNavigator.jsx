@@ -2,10 +2,10 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import colors from '../constants/colors';
 
+import InventoryHomeScreen from '../screens/InventoryHomeScreen';
 import ItemListScreen from '../screens/ItemListScreen';
 import ItemFormScreen from '../screens/ItemFormScreen';
 import StockListScreen from '../screens/StockListScreen';
-import StockAdjustmentScreen from '../screens/StockAdjustmentScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +25,11 @@ const InventoryNavigator = () => {
         animation: 'slide_from_right',
       }}>
       <Stack.Screen
+        name="InventoryHome"
+        component={InventoryHomeScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
         name="ItemList"
         component={ItemListScreen}
         options={{title: 'Items'}}
@@ -38,11 +43,6 @@ const InventoryNavigator = () => {
         name="StockList"
         component={StockListScreen}
         options={{title: 'Stock Overview'}}
-      />
-      <Stack.Screen
-        name="StockAdjustment"
-        component={StockAdjustmentScreen}
-        options={{title: 'Adjust Stock'}}
       />
     </Stack.Navigator>
   );

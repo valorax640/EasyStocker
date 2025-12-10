@@ -5,7 +5,6 @@ import {
   StyleSheet,
   ScrollView,
   Alert,
-  TouchableOpacity,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import Input from '../components/Input';
@@ -82,13 +81,40 @@ const PurchaseFormScreen = ({navigation}) => {
       return false;
     }
 
-    for (let item of selectedItems) {
-      if (!item.itemId || !item.quantity || !item. price) {
-        Alert.alert('Error', 'Please fill all item details');
+    for (let i = 0; i < selectedItems.length; i++) {
+      const item = selectedItems[i];
+      
+      // Check if item is selected
+      if (!item.itemId || item.itemId === '' || item.itemId === undefined) {
+        Alert.alert('Error', `Please select an item for Item #${i + 1}`);
         return false;
       }
-      if (parseFloat(item.quantity) <= 0 || parseFloat(item.price) <= 0) {
-        Alert.alert('Error', 'Quantity and price must be greater than 0');
+      
+      // Check if quantity is filled
+      const qtyStr = item.quantity ? item.quantity.toString().trim() : '';
+      if (!qtyStr || qtyStr === '') {
+        Alert.alert('Error', `Please enter quantity for Item #${i + 1}`);
+        return false;
+      }
+      
+      // Check if price is filled
+      const priceStr = item.price ? item.price.toString().trim() : '';
+      if (!priceStr || priceStr === '') {
+        Alert.alert('Error', `Please enter price for Item #${i + 1}`);
+        return false;
+      }
+      
+      // Validate quantity and price are valid numbers
+      const qty = parseFloat(qtyStr);
+      const price = parseFloat(priceStr);
+      
+      if (isNaN(qty) || qty <= 0) {
+        Alert.alert('Error', `Please enter a valid quantity greater than 0 for Item #${i + 1}`);
+        return false;
+      }
+      
+      if (isNaN(price) || price <= 0) {
+        Alert.alert('Error', `Please enter a valid price greater than 0 for Item #${i + 1}`);
         return false;
       }
     }

@@ -2,6 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import colors from '../constants/colors';
 
+import TransactionsHomeScreen from '../screens/TransactionsHomeScreen';
 import PurchaseListScreen from '../screens/PurchaseListScreen';
 import PurchaseFormScreen from '../screens/PurchaseFormScreen';
 import SalesListScreen from '../screens/SalesListScreen';
@@ -24,6 +25,11 @@ const TransactionsNavigator = () => {
         headerShadowVisible: true,
         animation: 'slide_from_right',
       }}>
+      <Stack.Screen
+        name="TransactionsHome"
+        component={TransactionsHomeScreen}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name="PurchaseList"
         component={PurchaseListScreen}

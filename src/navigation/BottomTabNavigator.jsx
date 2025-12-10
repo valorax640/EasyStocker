@@ -7,9 +7,24 @@ import DashboardScreen from '../screens/DashboardScreen';
 import InventoryNavigator from './InventoryNavigator';
 import TransactionsNavigator from './TransactionsNavigator';
 import ContactsNavigator from './ContactsNavigator';
-import SettingsScreen from '../screens/SettingsScreen';
 
 const Tab = createBottomTabNavigator();
+
+const DashboardTabIcon = ({color, size}) => (
+  <Icon name="view-dashboard" size={size} color={color} />
+);
+
+const InventoryTabIcon = ({color, size}) => (
+  <Icon name="package-variant" size={size} color={color} />
+);
+
+const TransactionsTabIcon = ({color, size}) => (
+  <Icon name="swap-horizontal" size={size} color={color} />
+);
+
+const ContactsTabIcon = ({color, size}) => (
+  <Icon name="account-group" size={size} color={color} />
+);
 
 const BottomTabNavigator = () => {
   return (
@@ -42,9 +57,7 @@ const BottomTabNavigator = () => {
         component={DashboardScreen}
         options={{
           tabBarLabel: 'Dashboard',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="view-dashboard" size={size} color={color} />
-          ),
+          tabBarIcon: DashboardTabIcon,
         }}
       />
       <Tab.Screen
@@ -52,9 +65,7 @@ const BottomTabNavigator = () => {
         component={InventoryNavigator}
         options={{
           tabBarLabel: 'Inventory',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="package-variant" size={size} color={color} />
-          ),
+          tabBarIcon: InventoryTabIcon,
         }}
       />
       <Tab.Screen
@@ -62,9 +73,7 @@ const BottomTabNavigator = () => {
         component={TransactionsNavigator}
         options={{
           tabBarLabel: 'Transactions',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="swap-horizontal" size={size} color={color} />
-          ),
+          tabBarIcon: TransactionsTabIcon,
         }}
       />
       <Tab.Screen
@@ -72,19 +81,7 @@ const BottomTabNavigator = () => {
         component={ContactsNavigator}
         options={{
           tabBarLabel: 'Contacts',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="account-group" size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="SettingsTab"
-        component={SettingsScreen}
-        options={{
-          tabBarLabel: 'Settings',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="cog" size={size} color={color} />
-          ),
+          tabBarIcon: ContactsTabIcon,
         }}
       />
     </Tab.Navigator>
