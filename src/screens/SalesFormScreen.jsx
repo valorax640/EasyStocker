@@ -168,8 +168,9 @@ const SalesFormScreen = ({navigation}) => {
             <Picker
               selectedValue={selectedCustomer}
               onValueChange={setSelectedCustomer}
+              mode="dropdown"
               style={styles.picker}>
-              <Picker.Item label="-- Select Customer --" value="" />
+              <Picker.Item label="-- Select Customer --" value="" enabled={false} />
               {customers.map(customer => (
                 <Picker.Item key={customer.id} label={customer.name} value={customer.id} />
               ))}
@@ -215,8 +216,9 @@ const SalesFormScreen = ({navigation}) => {
                         })
                       );
                     }}
+                    mode="dropdown"
                     style={styles.picker}>
-                    <Picker.Item label="-- Select Item --" value="" />
+                    <Picker.Item label="-- Select Item --" value="" enabled={false} />
                     {items.map(i => (
                       <Picker.Item 
                         key={i.id} 
@@ -320,9 +322,12 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     borderRadius: 8,
     backgroundColor: colors.white,
+    overflow: 'hidden',
   },
   picker: {
     height: 50,
+    width: '100%',
+    color: colors.text,
   },
   sectionTitle: {
     fontSize: 18,

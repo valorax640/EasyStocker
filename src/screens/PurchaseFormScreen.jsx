@@ -175,8 +175,9 @@ const PurchaseFormScreen = ({navigation}) => {
             <Picker
               selectedValue={selectedSupplier}
               onValueChange={setSelectedSupplier}
+              mode="dropdown"
               style={styles.picker}>
-              <Picker.Item label="-- Select Supplier --" value="" />
+              <Picker.Item label="-- Select Supplier --" value="" enabled={false} />
               {suppliers.map(supplier => (
                 <Picker. Item key={supplier.id} label={supplier.name} value={supplier.id} />
               ))}
@@ -203,8 +204,9 @@ const PurchaseFormScreen = ({navigation}) => {
                 <Picker
                   selectedValue={item.itemId}
                   onValueChange={(value) => updateItem(item. id, 'itemId', value)}
+                  mode="dropdown"
                   style={styles. picker}>
-                  <Picker.Item label="-- Select Item --" value="" />
+                  <Picker.Item label="-- Select Item --" value="" enabled={false} />
                   {items.map(i => (
                     <Picker.Item key={i.id} label={`${i.name} (${i.code})`} value={i.id} />
                   ))}
@@ -297,9 +299,12 @@ const styles = StyleSheet.create({
     borderColor:  colors.border,
     borderRadius: 8,
     backgroundColor: colors.white,
+    overflow: 'hidden',
   },
   picker: {
     height: 50,
+    width: '100%',
+    color: colors.text,
   },
   sectionTitle: {
     fontSize: 18,

@@ -54,7 +54,7 @@ const ItemListScreen = ({ navigation }) => {
       </View>
       <Text style={styles.itemDescription}>{item.description}</Text>
       <View style={styles.itemFooter}>
-        <Text style={styles.itemPrice}>Price: ${item.price}</Text>
+        <Text style={styles.itemPrice}>Price: ₹{item.price}</Text>
         <Text style={styles.itemStock}>Stock: {item.currentStock || 0}</Text>
       </View>
       <View style={styles.actions}>
