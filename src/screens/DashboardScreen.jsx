@@ -8,7 +8,7 @@ import {
   RefreshControl,
   StatusBar,
 } from 'react-native';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation, CommonActions } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Card from '../components/Card';
@@ -84,28 +84,64 @@ const DashboardScreen = () => {
       icon: 'package-variant',
       color: colors.primary,
       gradient: [colors.primary, colors.primaryDark],
-      onPress: () => navigation.navigate('InventoryTab', { screen: 'ItemList' }),
+      onPress: () => {
+        navigation.navigate('InventoryTab', {
+          screen: 'InventoryHome',
+        });
+        setTimeout(() => {
+          navigation.navigate('InventoryTab', {
+            screen: 'ItemList',
+          });
+        }, 0);
+      },
     },
     {
       title: 'New Sale',
       icon: 'cash-plus',
       color: colors.success,
       gradient: [colors.success, '#059669'],
-      onPress: () => navigation.navigate('TransactionsTab', { screen: 'SalesForm' }),
+      onPress: () => {
+        navigation.navigate('TransactionsTab', {
+          screen: 'TransactionsHome',
+        });
+        setTimeout(() => {
+          navigation.navigate('TransactionsTab', {
+            screen: 'SalesForm',
+          });
+        }, 0);
+      },
     },
     {
       title: 'Purchase',
       icon: 'cart-plus',
       color: colors.info,
       gradient: [colors.info, '#2563EB'],
-      onPress: () => navigation.navigate('TransactionsTab', { screen: 'PurchaseForm' }),
+      onPress: () => {
+        navigation.navigate('TransactionsTab', {
+          screen: 'TransactionsHome',
+        });
+        setTimeout(() => {
+          navigation.navigate('TransactionsTab', {
+            screen: 'PurchaseForm',
+          });
+        }, 0);
+      },
     },
     {
       title: 'Stock',
       icon: 'chart-box',
       color: colors.secondary,
       gradient: [colors.secondary, '#7C3AED'],
-      onPress: () => navigation.navigate('InventoryTab', { screen: 'StockList' }),
+      onPress: () => {
+        navigation.navigate('InventoryTab', {
+          screen: 'InventoryHome',
+        });
+        setTimeout(() => {
+          navigation.navigate('InventoryTab', {
+            screen: 'StockList',
+          });
+        }, 0);
+      },
     },
   ];
 
@@ -142,7 +178,7 @@ const DashboardScreen = () => {
         <View style={styles.statsSection}>
           <Card style={styles.statCard}>
             <View style={[styles.iconContainer, { backgroundColor: colors.success + '20' }]}>
-              <Icon name="currency-usd" size={24} color={colors.success} />
+              <Icon name="currency-inr" size={24} color={colors.success} />
             </View>
             <Text style={styles.statLabel}>Today's Sales</Text>
             <Text style={[styles.statValue, { color: colors.success }]}>

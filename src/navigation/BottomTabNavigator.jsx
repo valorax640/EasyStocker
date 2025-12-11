@@ -72,6 +72,11 @@ const BottomTabNavigator = () => {
           tabBarLabel: 'Inventory',
           tabBarIcon: InventoryTabIcon,
         }}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            navigation.navigate('InventoryTab', { screen: 'InventoryHome' });
+          },
+        })}
       />
       <Tab.Screen
         name="TransactionsTab"
@@ -80,6 +85,11 @@ const BottomTabNavigator = () => {
           tabBarLabel: 'Transactions',
           tabBarIcon: TransactionsTabIcon,
         }}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            navigation.navigate('TransactionsTab', { screen: 'TransactionsHome' });
+          },
+        })}
       />
       <Tab.Screen
         name="ContactsTab"
@@ -88,6 +98,11 @@ const BottomTabNavigator = () => {
           tabBarLabel: 'Contacts',
           tabBarIcon: ContactsTabIcon,
         }}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            navigation.navigate('ContactsTab', { screen: 'ContactsHome' });
+          },
+        })}
       />
     </Tab.Navigator>
   );
