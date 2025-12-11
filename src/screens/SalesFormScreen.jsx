@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   Alert,
+  Pressable,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import Input from '../components/Input';
@@ -164,18 +165,19 @@ const SalesFormScreen = ({navigation}) => {
       <View style={styles.form}>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Select Customer *</Text>
-          <View style={styles.pickerContainer}>
+          <Pressable style={styles.pickerContainer}>
             <Picker
               selectedValue={selectedCustomer}
               onValueChange={setSelectedCustomer}
               mode="dropdown"
+              dropdownIconColor={colors.text}
               style={styles.picker}>
-              <Picker.Item label="-- Select Customer --" value="" enabled={false} />
+              <Picker.Item label="-- Select Customer --" value="" />
               {customers.map(customer => (
                 <Picker.Item key={customer.id} label={customer.name} value={customer.id} />
               ))}
             </Picker>
-          </View>
+          </Pressable>
         </View>
 
         <Input
@@ -196,7 +198,7 @@ const SalesFormScreen = ({navigation}) => {
               
               <View style={styles.inputContainer}>
                 <Text style={styles.label}>Select Item *</Text>
-                <View style={styles.pickerContainer}>
+                <Pressable style={styles.pickerContainer}>
                   <Picker
                     selectedValue={item.itemId}
                     onValueChange={(value) => {
@@ -217,8 +219,9 @@ const SalesFormScreen = ({navigation}) => {
                       );
                     }}
                     mode="dropdown"
+                    dropdownIconColor={colors.text}
                     style={styles.picker}>
-                    <Picker.Item label="-- Select Item --" value="" enabled={false} />
+                    <Picker.Item label="-- Select Item --" value="" />
                     {items.map(i => (
                       <Picker.Item 
                         key={i.id} 
@@ -227,7 +230,7 @@ const SalesFormScreen = ({navigation}) => {
                       />
                     ))}
                   </Picker>
-                </View>
+                </Pressable>
               </View>
 
               {itemDetails && (
@@ -322,10 +325,8 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     borderRadius: 8,
     backgroundColor: colors.white,
-    overflow: 'hidden',
   },
   picker: {
-    height: 50,
     width: '100%',
     color: colors.text,
   },
